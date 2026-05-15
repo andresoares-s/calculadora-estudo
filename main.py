@@ -1,7 +1,7 @@
 editor = []
 ligado = True
 
-def escrever():
+def simular_botoes():
    
    ### A interface final vai lidar com botões. Por enquanto usaremos inputs numericos para os testes.
    # 0 a 9 = numeros
@@ -30,15 +30,15 @@ def escrever():
                        return 
                     else:
                         if iu == 15:
-                           return editor.pop()
+                           return simular_botoes.pop()
                         else:
                             global ligado 
                             ligado = False
                             return 
         
    else:
-      return editor.append(iu)
+      return simular_botoes.append(iu)
 
 while ligado == True:
-   escrever()
-   print(editor)
+   simular_botoes()
+   print(simular_botoes)
