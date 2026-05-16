@@ -1,3 +1,4 @@
+import config
 def simular_botoes(x):
    
    ### A interface final vai lidar com botões. Por enquanto usaremos inputs numericos para os testes.
@@ -32,8 +33,7 @@ def simular_botoes(x):
                               x.pop()
                               return x
                         else:
-                            global ligado 
-                            ligado = False
+                            config.ligado = False
                             return 
         
    else:

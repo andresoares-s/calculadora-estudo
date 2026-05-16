@@ -1,7 +1,7 @@
+import config 
 from func_calc import simular_botoes
 editor = []
-ligado = True
 
-while ligado == True:
+while config.ligado == True:
    editor = simular_botoes(editor)
    print(editor)
