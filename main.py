@@ -1,7 +1,9 @@
 import config 
-from func_calc import simular_botoes
-editor = []
+import func_calc
 
 while config.ligado == True:
-   editor = simular_botoes(editor)
-   print(editor)
+   config.editor = func_calc.simular_botoes(config.editor)
+   if config.calcular == True:
+      x, config.editor = config.editor, []
+      config.editor = func_calc.calculadora(x)
+   print(config.editor)
