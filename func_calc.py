@@ -11,31 +11,41 @@ def simular_botoes(x):
    """
    iu = int(input("Digite: "))
    if iu >= 10 or iu < 0:
-    if iu == 10:
-       concatenado = concatenar(config.editor)
-       print(concatenado)
-       config.calcular = True
-       x = calculadora(concatenado)
-       return x
-    else: 
+      if iu == 10:
+         if x[-1] == soma:
+            x.append(0)
+         elif x[-1] == sub:
+            x.append(0)
+         elif x[-1] == mul:
+            x.append(1)
+         elif x[-1] == div:
+            x.append(1) 
+         concatenado = concatenar(config.editor)
+         print(concatenado)
+         config.calcular = True
+         x = calculadora(concatenado)
+         return x
+      else:
         if iu == 11:
-           if type(x[len(x)-1]) == int:
+           if type(x[len(x)-1]) == int or type(x[len(x)-1]) == float:
               x.append(soma)
               return x
            else: 
               return x      
         else:
             if iu == 12:
-               if type(x[len(x)-1]) == int:
+               if type(x[len(x)-1]) == int or type(x[len(x)-1]) == float:
                   x.append(sub) 
                return x
             else:
                 if iu == 13:
-                   if type(x[len(x)-1]) == int:
+                   if type(x[len(x)-1]) == int or type(x[len(x)-1]) == float:
                       x.append(mul)
                    return x
                 else:
                     if iu == 14:
+                        if type(x[len(x)-1]) == int or type(x[len(x)-1]) == float:
+                           x.append(div)
                         return x
                     else:
                         if iu == 15:
@@ -56,29 +66,21 @@ def concatenar(expressao):
    conc = []
    a = expressao
    contador = len(a)
-   if any(type(item) != int for item in a):
+   if any(not isinstance(item, (int, float)) for item in a):
       while i <= contador-1:
          conc.append(a[i])
-         if type(conc[i]) != int:
+         if type(conc[i]) != int and type(conc[i]) != float:
             conc.pop()
-            operando = int("".join(map(str,conc)))
+            operando = float("".join(map(str,conc)))
             editormenos = a[i+1:]
             operador = a[i]
             editornovo = [operando,operador] + concatenar(editormenos)
             return editornovo
-         else:   
+         else:
             i += 1
    else:
-      return [int("".join(map(str,a)))]
+      return [float("".join(map(str,a)))]
 def calculadora(equacao): 
-   if equacao[-1] == soma:
-      equacao.append(0)
-   elif equacao[-1] == sub:
-      equacao.append(0)
-   elif equacao[-1] == mul:
-      equacao.append(1)
-   elif equacao[-1] == div:
-      equacao.append(1) 
    i2 = 0
    while i2 < len(equacao):
       if equacao[i2] == mul or equacao[i2] == div:
@@ -115,3 +117,5 @@ def sub(a,b):
    return a-b
 def soma(a,b):
    return a+b
+
+
